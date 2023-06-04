@@ -1,0 +1,175 @@
+ {% load static %}
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="static/scss/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="dark"></div>
+
+    <header>
+      <div class="container">
+        <div class="menu-btn">
+          <span class="menu-btn__span"></span>
+          <span class="menu-btn__span"></span>
+          <span class="menu-btn__span"></span>
+        </div>
+        {% if user.is_authenticated %}
+        <div class="wrapper-user-menu">
+          <div class="wrapper-user-balance">
+            <div class="user-balance-btns">
+              <button class="withdraw-btn">
+                <img
+                  class="withdraw-icon"
+                  title="Вывести"
+                  src="static/image/withdraw-money-icon.png"
+                  alt="withdraw money icon"
+                />
+              </button>
+              <button class="replenish-btn">
+                <img
+                  class="replenish-icon"
+                  title="Пополнить"
+                  src="static/image/replenish-money-icon.png"
+                  alt="replenish money icon"
+                />
+              </button>
+            </div>
+            <div class="user-balance">{{ request.user.balance }}</div>
+          </div>
+
+          <div class="user-menu">
+            <h3 id="username_title">{{ request.user.username }}</h3>
+            <div class="open-menu-btn">
+              <img
+                class="avatar"
+                src="static/image/avatar.png"
+                alt="avatar image"
+              />
+              <img
+                class="down-icon"
+                src="static/image/down-icon.png"
+                alt="down icon"
+              />
+            </div>
+
+            <div class="wrapper-user-menu-content">
+              <div class="user-menu-content">
+                <button class="href">О нас</button>
+                <button class="href">Контакты</button>
+                <a href="{% url 'logout' %}"
+                  ><button class="href">Выйти</button></a
+                >
+              </div>
+            </div>
+          {% else %}
+            <div class="wrapper-login">
+              <a href="{% url 'register' %}"
+                ><button class="btn-login">Авторизоваться</button></a>
+            </div>
+          {% endif %}
+
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="auction">
+      <div class="container">
+        <div class="auction__timer">
+          <p id="for_ends_auction" class="timer__title">ДО КОНЦА АУКЦИОНА</p>
+          <div class="timer__time" id="time">
+            <p class="time__numbers" id="minuts"></p>
+            <p class="time__numbers">:</p>
+            <p class="time__numbers" id="seconds"></p>
+          </div>
+        </div>
+        <div class="auction__things">
+          <input type="radio" id="color_red" name="color" value="r" />
+          <label
+            type="button"
+            for="color_red"
+            class="things__second"
+            id="things__second"
+            onclick="selectedSecond()"
+          ></label>
+
+          <input type="radio" id="color_blue" value="b" name="color" />
+          <label
+            type="button"
+            for="color_blue"
+            class="things__first"
+            id="things__first"
+            onclick="selectedFirst()"
+          ></label>
+        </div>
+        <div class="auction__form">
+          <div class="form__input">
+            <label class="input__label" for="sum">СУММА</label>
+             {% csrf_token %}
+            <input
+              class="input"
+              id="input"
+              type="text"
+              name="sum_for_buy"
+              id="sum"
+              placeholder="25р"
+            />
+            <p style="color: red" id="error_form"></p>
+          </div>
+          <div class="form__btn">
+             {% if not user.is_authenticated %}
+            <a href="{% url 'login' %}"
+              ><button class="btn" type="submit">КУПИТЬ</button></a
+            >
+             {% else %}
+             <button class="btn" id="btn" type="submit">КУПИТЬ</button>
+             {% endif %}
+             <p style="color: red" id="states_stavka"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="info">
+          <h2 class="info__title">Контакты:</h2>
+          <p class="info__field">Номер телефона: +74314ё41144</p>
+          <p class="info__field">Почта: fsarRAafa@gmail.com</p>
+        </div>
+        <div class="description">
+          <h2 class="description__title">Описание:</h2>
+          <p class="description__text">
+            Факйуепрцуеур6ц4пццкумумйкпйайкпейупецуауцкпуцсйкцскйцкпйупемсфвсйкмйкйцчйцккрыефм.
+          </p>
+          <a class="description__link" href="#">Политика конфиденциальности</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="{% static 'js/main.js' %}"></script>
+     {% if user.is_authenticated %}
+    <script src="{% static 'js/notification.js' %}"></script>
+     {% endif %}
+
+    <script>
+      let btn1 = document.getElementById("things__first");
+      let btn2 = document.getElementById("things__second");
+
+      function selectedFirst() {
+        btn1.style.background = "rgb(2 2 116)";
+        btn2.style.background = "#b30000";
+      }
+
+      function selectedSecond() {
+        btn2.style.background = "rgb(126 8 8)";
+        btn1.style.background = "#0000ad";
+      }
+    </script>
+  </body>
+</html>

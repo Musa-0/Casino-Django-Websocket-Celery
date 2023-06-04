@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login V1</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{% static 'static_auth_panel/images/icons/favicon.ico' %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'static_auth_panel/vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'static_auth_panel/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'static_auth_panel/vendor/animate/animate.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'static_auth_panel/vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'static_auth_panel/vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'static_auth_panel/css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'static_auth_panel/css/main.css' %}">
+<!--===============================================================================================-->
+</head>
+<body>
+
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="{% static 'static_auth_panel/images/img-01.png' %}" alt="Account">
+				</div>
+
+					<span class="login100-form-title">
+                        Мы отправили ссылку на вашу почту, перейдите по ней чтобы подтвердить почту
+					</span>
+					<div class="container-login100-form-btn">
+						<a href="{% url 'index' %}"><button class="login100-form-btn">
+							Перейти на главную страницу
+                        </button></a>
+					</div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>
