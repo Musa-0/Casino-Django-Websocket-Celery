@@ -99,8 +99,8 @@ DATABASES = {
    'default': {
        'ENGINE': 'django.db.backends.postgresql_psycopg2',
        'NAME': 'your_db',
-       'USER': 'your_user',
-       'PASSWORD': 'passworn',
+       'USER': 'username',
+       'PASSWORD': 'password',
        'HOST': 'localhost',
        'PORT': '5432',
    }
@@ -195,10 +195,10 @@ CELERY_RESULT_SERIALIZER = 'json' #Формат сериализации рез�
 
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
-EMAIL_HOST = 'hosting'#почтовый сервис
+EMAIL_HOST = 'smtp.mail.ru'#почтовый сервис
 EMAIL_HOST_USER = 'email'
 EMAIL_HOST_PASSWORD = 'pasword'
-EMAIL_PORT = 25 #выберите ваш порт
+EMAIL_PORT = 2525 #выберите ваш порт
 
 SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
